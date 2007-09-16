@@ -1,0 +1,53 @@
+#labels Featured,Phase-Support,Phase-Implementation,Phase-Design
+== About ==
+jQuery.hotkeys is a plugin that let you easily add and remove handlers for keyboard events anywhere in your code supporing almost key combination.
+It is based on a library [http://www.openjs.com/scripts/events/keyboard_shortcuts/ shortcut.js] written by [http://www.openjs.com/ Binny V A].
+
+The syntax is as follows:
+{{{ 
+$.hotkeys.add(<key>,<options>, <handler>);
+$.hotkeys.remove(<key>, <options>);
+
+$.hotkeys.add('Ctrl+a', {target:'div.select', type: 'keyup'}, function(){/*DO YOUR DUTY*/});
+$.hotkeys.remove('Ctrl+a', {target: 'div.select'});
+}}}
+
+Or you can use default options as:
+
+{{{
+$.hotkeys.add(<key>, <handler>)
+$.hotkeys.remove(<key>)
+
+i.e.
+$.hotkeys.add('Ctrl+a',function(){/*DO YOUR DUTY*/});
+$.hotkeys.remove('Ctrl+a');
+}}}
+
+The default options are:
+
+{{{ 
+{type: 'keydown', propagate: false, disableInInput: false, target: jQuery('html')[0]}
+}}}
+
+
+== Browser support ==
+  * IE7 (Windows).
+  * Firefox 1.5. (Linux, Windows and OSX)
+  * Firefox 2.0. (Linux, Windows and OSX)
+  * Safari (OSX and Windows).
+  * Opera 9.2 (Linux and Windows).
+
+*I would be glad if anyone can run the test in other environments.*
+
+===Note===
+Firefox is the most liberal one in the manner of letting you capture all short-cuts even those that are built-in in the browser such as `Ctrl-t` for new tab, or `Ctrl-a` for selecting all text. You can always bubble them up to the browser by using option `propgate:true`.
+
+Others, (IE) either let you handle built-in short cuts, but will add their functionality after your code has executed. Or (Opera/Safari) will *not* pass those events to the DOM at all.
+
+*So, if you add `Ctrl-Q` or `Alt-F4` and your Safari/Opera window is closed don't be surprised.*
+
+===Version===
+Current version is beta 0.0.2
+
+Tested with jQuery 1.1.3 and 1.1.4
+ 
