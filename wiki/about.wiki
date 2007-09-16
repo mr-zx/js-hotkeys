@@ -1,6 +1,6 @@
 #labels Featured,Phase-Support,Phase-Implementation,Phase-Design
 == About ==
-jQuery.hotkeys is a plugin that let you easily add and remove handlers for keyboard events anywhere in your code supporing almost key combination.
+jQuery.hotkeys is a plugin that let you easily add and remove handlers for keyboard events anywhere in your code supporting almost any key combination.
 It is based on a library [http://www.openjs.com/scripts/events/keyboard_shortcuts/ shortcut.js] written by [http://www.openjs.com/ Binny V A].
 
 The syntax is as follows:
@@ -50,4 +50,5 @@ Others, (IE) either let you handle built-in short cuts, but will add their funct
 Current version is beta 0.0.2
 
 Tested with jQuery 1.1.3 and 1.1.4
+ 
  
