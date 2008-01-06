@@ -51,8 +51,8 @@ Others, (IE) either let you handle built-in short cuts, but will add their funct
 
 *So, if you add `Ctrl-Q` or `Alt-F4` and your Safari/Opera window is closed don't be surprised.*
 
-===Version===
-Current version is beta 0.0.3
+
+===Current Version is: beta 0.0.5===
 
  
  
