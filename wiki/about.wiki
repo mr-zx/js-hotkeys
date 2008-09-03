@@ -1,5 +1,5 @@
 #labels Featured,Phase-Support,Phase-Implementation,Phase-Design
-== About ==
+= About =
 jQuery.hotkeys is a plugin that let you easily add and remove handlers for keyboard events anywhere in your code supporting almost any key combination.
 It is based on a library [http://www.openjs.com/scripts/events/keyboard_shortcuts/ shortcut.js] written by [http://www.openjs.com/ Binny V A].
 
@@ -14,20 +14,16 @@ $(expression).bind(<types>,<options>, <handler>);
 $(expression).unbind(<types>,<options>, <handler>);
 
 $.(document).bind('keydown', 'Ctrl+a', fn);
-$.('div.foo').bind('keydown', 
-     {combi:'Ctrl+a', disableInInput: true, propogate: true}, fn);
+$.('div.foo').bind('keydown', {combi:'Ctrl+a', disableInInput: true, propogate: true}, fn);
 
 $.('div.foo').unbind('keydown', 'Ctrl+a', fn);
-
 }}}
 
-The default options are:
+The default options are: `{ propagate: false, disableInInput: false }`
 
-{{{ 
-{ propagate: false, disableInInput: false }
-}}}
+== [http://jshotkeys.googlepages.com/test-static.-01.html Live Demo] ==
 
-== jQuery Compatibility==
+== jQuery Compatibility ==
 Tested with *jQuery 1.2.6*
 
 == Browser support ==
@@ -40,19 +36,42 @@ Tested with *jQuery 1.2.6*
  * X - The browser is not available on that platform.  
  * ? - I don't have that browser installed on that platform.
 
-*If you happened to have a browser installed on a platform which I marked as '?', I will appreciate if you kindly run the demo and sends us the results.*
+*If you happened to have a browser installed on a platform which I marked as '?', I will appreciate if you kindly run the demo and send over the results.*
 
-===*[http://jshotkeys.googlepages.com/test-static.-01.html Live Demo]*===
+== Features added in this version ==
+ * Implemented as $.fn - let you use `this`.
+ * jQuery selectors are supported.
+ * Extending `$.fn.bind` and `$.fn.unbind` so you get a single interface for binding events to handlers
+ 
+== Overriding jQuery ==
+Any call to $.fn.bind i.e. `$(document).bind('keydown', 'ctrl', fn)` will invoke the plugin's version of `bind()`. However, event types that irrelevant to the plugin such as `click`, `mouseover`, etc are passed to jQuery.fn.bind.
+Therefore when calling `$(document).bind('keydown click', 'ctrl', fn)` the `click` will be handled by jQuery while the `keydown` would be handled by the plugin.
 
-===Note===
+I also modified the $.fn.find by adding a single line at the top of the function body. here is the code:
+{{{
+jQuery.fn.find = function( selector ) {
+    // adding the following line so to retrive .query later
+    this.query=selector;
+
+    var elems = jQuery.map(this, function(elem){
+        return jQuery.find( selector, elem );
+    });
+
+    return this.pushStack( /[^+>] [^+>]/.test( selector ) || selector.indexOf("..") > -1 ?
+        jQuery.unique( elems ) :
+        elems );
+};
+}}}
+===Notes===
+
 Firefox is the most liberal one in the manner of letting you capture all short-cuts even those that are built-in in the browser such as `Ctrl-t` for new tab, or `Ctrl-a` for selecting all text. You can always bubble them up to the browser by using option `propgate:true`.
 
-Others, (IE) either let you handle built-in short cuts, but will add their functionality after your code has executed. Or (Opera/Safari) will *not* pass those events to the DOM at all.
+Others, (IE) either let you handle built-in short-cuts, but will add their functionality after your code has executed. Or (Opera/Safari) will *not* pass those events to the DOM at all.
 
 *So, if you add `Ctrl-Q` or `Alt-F4` and your Safari/Opera window is closed don't be surprised.*
 
 
-===Current Version is: beta 0.0.5===
+===Current Version is: beta 0.0.7===
 
  
  
