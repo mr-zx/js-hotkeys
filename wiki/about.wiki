@@ -21,7 +21,7 @@ $('div.foo').unbind('keydown', 'Ctrl+a', fn);
 
 The default options are: `{ propagate: false, disableInInput: false }`
 
-== [http://jshotkeys.googlepages.com/test-static.-01.html Live Demo] ==
+== [http://jshotkeys.googlepages.com/test-static-01.html Live Demo] ==
 
 == jQuery Compatibility ==
 Tested with *jQuery 1.2.6*
