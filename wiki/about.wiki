@@ -3,11 +3,6 @@
 jQuery.hotkeys is a plugin that let you easily add and remove handlers for keyboard events anywhere in your code supporting almost any key combination.
 It is based on a library [http://www.openjs.com/scripts/events/keyboard_shortcuts/ shortcut.js] written by [http://www.openjs.com/ Binny V A].
 
-The plugin extends the following jQuery methods and functions:
- * $.fn.bind
- * $.fn.unbind
- * $.find
-
 The syntax is as follows:
 {{{ 
 $(expression).bind(<types>,<options>, <handler>);
@@ -44,8 +39,15 @@ Tested with *jQuery 1.2.6*
  * Extending `$.fn.bind` and `$.fn.unbind` so you get a single interface for binding events to handlers
  
 == Overriding jQuery ==
+The plugin extends the following jQuery methods and functions:
+ * $.fn.bind
+ * $.fn.unbind
+ * $.find
+
 The plugin takes over the control for `bind()` and `unbind()` methods.
+
 However, it only handle the `keydown`, `keyup` and `keypress` event types. Any other types are passed to the original `bind()` and `unbind()` methods.
+
 Moreover, if you call `bind()` without passing the shortcut key combination e.g. `$(document).bind('keydown', fn)` it will pass it as well to jQuery 'bind()' method.
 
 I also modified the $.fn.find by adding a single line at the top of the function body. here is the code:
