@@ -13,10 +13,10 @@ The syntax is as follows:
 $(expression).bind(<types>,<options>, <handler>);
 $(expression).unbind(<types>,<options>, <handler>);
 
-$.(document).bind('keydown', 'Ctrl+a', fn);
-$.('div.foo').bind('keydown', {combi:'Ctrl+a', disableInInput: true, propogate: true}, fn);
+$(document).bind('keydown', 'Ctrl+a', fn);
+$('div.foo').bind('keydown', {combi:'Ctrl+a', disableInInput: true, propogate: true}, fn);
 
-$.('div.foo').unbind('keydown', 'Ctrl+a', fn);
+$('div.foo').unbind('keydown', 'Ctrl+a', fn);
 }}}
 
 The default options are: `{ propagate: false, disableInInput: false }`
