@@ -3,46 +3,46 @@
 jQuery.hotkeys is a plugin that let you easily add and remove handlers for keyboard events anywhere in your code supporting almost any key combination.
 It is based on a library [http://www.openjs.com/scripts/events/keyboard_shortcuts/ shortcut.js] written by [http://www.openjs.com/ Binny V A].
 
+The plugin extends the following jQuery methods and functions:
+ * $.fn.bind
+ * $.fn.unbind
+ * $.find
+
 The syntax is as follows:
 {{{ 
-$.hotkeys.add(<key>,<options>, <handler>);
-$.hotkeys.remove(<key>, <options>);
+$(expression).bind(<types>,<options>, <handler>);
+$(expression).unbind(<types>,<options>, <handler>);
 
-$.hotkeys.add('Ctrl+a', {target:'div.select', type: 'keyup'}, function(){/*DO YOUR DUTY*/});
-$.hotkeys.remove('Ctrl+a', {target: 'div.select'});
-}}}
+$.(document).bind('keydown', 'Ctrl+a', fn);
+$.('div.foo').bind('keydown', 
+     {combi:'Ctrl+a', disableInInput: true, propogate: true}, fn);
 
-Or you can use default options as:
+$.('div.foo').unbind('keydown', 'Ctrl+a', fn);
 
-{{{
-$.hotkeys.add(<key>, <handler>)
-$.hotkeys.remove(<key>)
-
-i.e.
-$.hotkeys.add('Ctrl+a',function(){/*DO YOUR DUTY*/});
-$.hotkeys.remove('Ctrl+a');
 }}}
 
 The default options are:
 
 {{{ 
-{type: 'keydown', propagate: false, disableInInput: false, target: jQuery('html')[0]}
+{ propagate: false, disableInInput: false }
 }}}
 
 == jQuery Compatibility==
-Tested with *jQuery 1.1.3, 1.1.4 and 1.2.1*
+Tested with *jQuery 1.2.6*
 
 == Browser support ==
-  * IE6 (Windows).
-  * IE7 (Windows).
-  * Firefox 1.5. (Linux, Windows and OSX)
-  * Firefox 2.0. (Linux, Windows and OSX)
-  * Safari (OSX and Windows).
-  * Opera 9.2 (Linux and Windows).
+||        ||IE 6,7,8||FF 1.5/2/3||Opera-9||Safari-3||Chrome-0.2 ||
+||Windows||+||+||+||+||+||
+||Mac OS X||x||+||?||+||x||
+||GNU/Linux||x||+||?||x||x||
 
-*I would be glad if anyone can run the test in other environments.*
+ * + - Works fine.  
+ * X - The browser is not available on that platform.  
+ * ? - I don't have that browser installed on that platform.
 
-===*[http://jshotkeys.googlepages.com/test-static.html Live Demo]*===
+*If you happened to have a browser installed on a platform which I marked as '?', I will appreciate if you kindly run the demo and sends us the results.*
+
+===*[http://jshotkeys.googlepages.com/test-static.-01.html Live Demo]*===
 
 ===Note===
 Firefox is the most liberal one in the manner of letting you capture all short-cuts even those that are built-in in the browser such as `Ctrl-t` for new tab, or `Ctrl-a` for selecting all text. You can always bubble them up to the browser by using option `propgate:true`.
