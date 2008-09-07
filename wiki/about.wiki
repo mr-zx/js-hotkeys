@@ -58,8 +58,9 @@ I also modified the $.fn.find by adding a single line at the top of the function
     jQuery.fn.find = function( selector ) {
         // adding this line so to retrieve this later
         this.query=selector;
+        // call jQuery original find
         return jQuery.fn.__find__.apply(this, arguments);
-	};
+    };
 }}}
 ===Notes===
 
