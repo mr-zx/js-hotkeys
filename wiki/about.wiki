@@ -52,18 +52,14 @@ Moreover, if you call `bind()` without passing the shortcut key combination e.g.
 
 I also modified the $.fn.find by adding a single line at the top of the function body. here is the code:
 {{{
-jQuery.fn.find = function( selector ) {
-    // adding the following line so to retrive .query later
-    this.query=selector;
-
-    var elems = jQuery.map(this, function(elem){
-        return jQuery.find( selector, elem );
-    });
-
-    return this.pushStack( /[^+>] [^+>]/.test( selector ) || selector.indexOf("..") > -1 ?
-        jQuery.unique( elems ) :
-        elems );
-};
+    // a wrapper around of $.fn.find 
+    // wanted to add .query property which represents the selector
+    // see more at: http://groups.google.com/group/jquery-en/browse_thread/thread/18f9825e8d22f18d
+    jQuery.fn.find = function( selector ) {
+        // adding this line so to retrieve this later
+        this.query=selector;
+        return jQuery.fn.__find__.apply(this, arguments);
+	};
 }}}
 ===Notes===
 
