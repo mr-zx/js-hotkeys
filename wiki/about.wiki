@@ -22,10 +22,10 @@ The default options are: `{ propagate: false, disableInInput: false }`
 Tested with *jQuery 1.2.6*
 
 == Browser support ==
-||        ||IE 6,7,8||FF 1.5/2/3||Opera-9||Safari-3||Chrome-0.2 ||
+||        ||IE 6/7/8||FF 1.5/2/3||Opera-9||Safari-3||Chrome-0.2 ||
 ||Windows||+||+||+||+||+||
 ||Mac OS X||x||+||?||+||x||
-||GNU/Linux||x||+||?||x||x||
+||GNU/Linux||x||+||+||x||x||
 
  * + - Works fine.  
  * X - The browser is not available on that platform.  
