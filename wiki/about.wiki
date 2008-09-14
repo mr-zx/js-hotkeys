@@ -12,9 +12,7 @@ $(document).bind('keydown', 'Ctrl+a', fn);
 
 // e.g. replace '$' sign with '€'
 $('input.foo').bind('keyup', '$', function(){
-    var v = this.value;
-    v = v.replace('$', '€');
-    this.value = v;
+    this.value = this.value.replace('$', '€');
 });
 
 $('div.foo').unbind('keydown', 'Ctrl+a', fn);
