@@ -20,10 +20,10 @@ $('input.foo').bind('keyup', '$', function(){
 $('div.foo').unbind('keydown', 'Ctrl+a', fn);
 }}}
 
-=== Types ===
+==== Types ====
 Supported types are `'keydown'`, `'keyup'` and `'keypress'`
 
-=== Options ===
+==== Options ====
 The options are `'combi'` i.e. the key combination, and `'disableInInput'` which allow your code not to be executed when the cursor is located inside an input (`$(elem).is('input') || $(elem).is('textarea'))`).
 
 As you can see, the key combination can be passed as string or as an object. You may pass an object in case you wish to override the default option for `disableInInput` which is set to `false`:
@@ -32,9 +32,14 @@ $(document).bind('keydown', {combi:'a', disableinInput: true}, fn);
 }}}
 I.e. when cursor is within an input field, `'a'` will be inserted into the input field without interfering. 
 
-  * If you want to use more than one modifiers (e.g. alt+ctrl+z) you should define them by an alphabetical order e.g. alt+ctrl+shift
-  * Modifiers are case insensitive, i.e. Ctrl+a == ctrl+a.
-  * As you can see in the example above, when you wish to handle the event exclusively (e.g. handling alphabetical keys within an input field) you should return false;
+If you want to use more than one modifiers (e.g. alt+ctrl+z) you should define them by an alphabetical order e.g. alt+ctrl+shift
+
+Modifiers are case insensitive, i.e. 'Ctrl+a' == 'ctrl+a'.
+
+==== Handler ====
+In previous versions there was an option propagate which is removed now and implemented at the user code level.
+
+When using jQuery, if an event handler returns false, jQuery will call `stopPropagation()` and `preventDefault()`
 
 == [http://jshotkeys.googlepages.com/test-static-01.html Live Demo] ==
 
