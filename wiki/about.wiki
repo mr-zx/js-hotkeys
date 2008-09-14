@@ -39,6 +39,7 @@ In previous versions there was an option propagate which is removed now and impl
 
 When using jQuery, if an event handler returns false, jQuery will call `stopPropagation()` and `preventDefault()`
 
+
 == [http://jshotkeys.googlepages.com/test-static-01.html Live Demo] ==
 
 == jQuery Compatibility ==
@@ -56,40 +57,49 @@ Tested with *jQuery 1.2.6*
 
 *If you happened to have a browser installed on a platform which I marked as '?', I will appreciate if you kindly run the demo and send over the results.*
 
-== Features added in this version ==
+== Features added in this version (0.7.x) ==
  * Implemented as $.fn - let you use `this`.
  * jQuery selectors are supported.
  * Extending `$.fn.bind` and `$.fn.unbind` so you get a single interface for binding events to handlers
  
 == Overriding jQuery ==
-The plugin extends the following jQuery methods and functions:
+The plugin wraps the following jQuery methods:
  * $.fn.bind
  * $.fn.unbind
  * $.find
 
-The plugin takes over the control for `bind()` and `unbind()` methods.
+Even though the plugin overrides these methods, the original methods will *always* be called.
 
-However, it only handle the `keydown`, `keyup` and `keypress` event types. Any other types are passed to the original `bind()` and `unbind()` methods.
+The plugin will add functionality only for the `keydown`, `keyup` and `keypress` event types. Any other types are passed untouched to the original `'bind()'` and `'unbind()'` methods.
 
-Moreover, if you call `bind()` without passing the shortcut key combination e.g. `$(document).bind('keydown', fn)` it will pass it as well to jQuery 'bind()' method.
+Moreover, if you call `bind()` without passing the shortcut key combination e.g. `$(document).bind('keydown', fn)` only the original `'bind()'` method will be executed.
 
-I also modified the $.fn.find by adding a single line at the top of the function body. here is the code:
+I also modified the `$.fn.find` method by adding a single line at the top of the function body. here is the code:
+
+*Original Version*
 {{{
-    // a wrapper around of $.fn.find 
-    // wanted to add .query property which represents the selector
-    // see more at: http://groups.google.com/group/jquery-en/browse_thread/thread/18f9825e8d22f18d
     jQuery.fn.find = function( selector ) {
-        // adding this line so to retrieve this later
+        return jQuery.fn.__find__.apply(this, arguments);
+    };
+}}}
+
+* Plugin's Version*
+{{{
+    jQuery.fn.find = function( selector ) {
+        // the line I added
         this.query=selector;
         // call jQuery original find
         return jQuery.fn.__find__.apply(this, arguments);
     };
 }}}
+You can read about this at [http://groups.google.com/group/jquery-en/browse_thread/thread/18f9825e8d22f18d jQuery's User Group]
+
 ===Notes===
 
 Firefox is the most liberal one in the manner of letting you capture all short-cuts even those that are built-in in the browser such as `Ctrl-t` for new tab, or `Ctrl-a` for selecting all text. You can always bubble them up to the browser by using option `propgate:true`.
 
 Others, (IE) either let you handle built-in short-cuts, but will add their functionality after your code has executed. Or (Opera/Safari) will *not* pass those events to the DOM at all.
+
 
 *So, if you add `Ctrl-Q` or `Alt-F4` and your Safari/Opera window is closed don't be surprised.*
 
