@@ -24,7 +24,7 @@ $('div.foo').unbind('keydown', 'Ctrl+a', fn);
 Supported types are `'keydown'`, `'keyup'` and `'keypress'`
 
 ==== Options ====
-The options are `'combi'` i.e. the key combination, and `'disableInInput'` which allow your code not to be executed when the cursor is located inside an input (`$(elem).is('input') || $(elem).is('textarea'))`).
+The options are `'combi'` i.e. the key combination, and `'disableInInput'` which allow your code not to be executed when the cursor is located inside an input ( `$(elem).is('input') || $(elem).is('textarea')` ).
 
 As you can see, the key combination can be passed as string or as an object. You may pass an object in case you wish to override the default option for `disableInInput` which is set to `false`:
 {{{
