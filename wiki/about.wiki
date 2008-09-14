@@ -96,12 +96,11 @@ You can read about this at [http://groups.google.com/group/jquery-en/browse_thre
 
 ===Notes===
 
-Firefox is the most liberal one in the manner of letting you capture all short-cuts even those that are built-in in the browser such as `Ctrl-t` for new tab, or `Ctrl-a` for selecting all text. You can always bubble them up to the browser by using option `propgate:true`.
+Firefox is the most liberal one in the manner of letting you capture all short-cuts even those that are built-in in the browser such as `Ctrl-t` for new tab, or `Ctrl-a` for selecting all text. You can always bubble them up to the browser by returning `true` in your handler.
 
 Others, (IE) either let you handle built-in short-cuts, but will add their functionality after your code has executed. Or (Opera/Safari) will *not* pass those events to the DOM at all.
 
-
-*So, if you add `Ctrl-Q` or `Alt-F4` and your Safari/Opera window is closed don't be surprised.*
+*So, if you bind `Ctrl-Q` or `Alt-F4` and your Safari/Opera window is closed don't be surprised.*
 
 
 ===Current Version is: beta 0.7===
