@@ -76,13 +76,6 @@ Moreover, if you call `bind()` without passing the shortcut key combination e.g.
 
 I also modified the `$.fn.find` method by adding a single line at the top of the function body. here is the code:
 
-*Original Version*
-{{{
-    jQuery.fn.find = function( selector ) {
-        return jQuery.fn.__find__.apply(this, arguments);
-    };
-}}}
-
 * Plugin's Version*
 {{{
     jQuery.fn.find = function( selector ) {
