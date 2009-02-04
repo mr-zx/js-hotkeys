@@ -43,7 +43,7 @@ When using jQuery, if an event handler returns false, jQuery will call `stopProp
 == [http://jshotkeys.googlepages.com/test-static-01.html Live Demo] ==
 
 == jQuery Compatibility ==
-Tested with *jQuery 1.2.6*
+Tested with *jQuery 1.2.6* to *jQuery 1.3.1*
 
 == Browser support ==
 ||        ||IE 6/7/8||FF 1.5/2/3||Opera-9||Safari-3||Chrome-0.2 ||
@@ -87,7 +87,7 @@ I also modified the `$.fn.find` method by adding a single line at the top of the
 }}}
 You can read about this at [http://groups.google.com/group/jquery-en/browse_thread/thread/18f9825e8d22f18d jQuery's User Group]
 
-===Notes===
+===Overrides Browser Native Shortcuts (f5, Ctrl-l, etc)===
 
 Firefox is the most liberal one in the manner of letting you capture all short-cuts even those that are built-in in the browser such as `Ctrl-t` for new tab, or `Ctrl-a` for selecting all text. You can always bubble them up to the browser by returning `true` in your handler.
 
@@ -95,5 +95,16 @@ Others, (IE) either let you handle built-in short-cuts, but will add their funct
 
 *So, if you bind `Ctrl-Q` or `Alt-F4` and your Safari/Opera window is closed don't be surprised.*
 
+The following example omit the quick-search feature in firefox when typing '/'
+{{{
+jQuery(document).bind('keydown', '/', function (evt){
+    alert("Hello Slash"); 
+    evt.stopPropagation( );  
+    evt.preventDefault( );
+    return false;
+});
+}}}
 
+*Note that I am calling `preventDefault()` and `stopPropagation()` inside the handler*
+For some reason just returning false does not work.*
 ===Current Version is: beta 0.7===
