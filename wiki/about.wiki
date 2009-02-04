@@ -106,5 +106,5 @@ jQuery(document).bind('keydown', '/', function (evt){
 }}}
 
 *Note that I am calling `preventDefault()` and `stopPropagation()` inside the handler*
-For some reason just returning false does not work.*
+For some reason just returning false does not work.
 ===Current Version is: beta 0.7===
