@@ -26,7 +26,7 @@ The options are `'combi'` i.e. the key combination, and `'disableInInput'` which
 
 As you can see, the key combination can be passed as string or as an object. You may pass an object in case you wish to override the default option for `disableInInput` which is set to `false`:
 {{{
-$(document).bind('keydown', {combi:'a', disableinInput: true}, fn);
+$(document).bind('keydown', {combi:'a', disableInInput: true}, fn);
 }}}
 I.e. when cursor is within an input field, `'a'` will be inserted into the input field without interfering. 
 
